@@ -1,29 +1,34 @@
 //java thread creation
+
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class RunnableThread implements Runnable {
     private int threadID;
     private int potentialPrime;
-    private boolean isPrime;
+    private Prime isPrime; 
+    private AtomicBoolean ready;
 
-    public boolean getIsPrime(){
-        return isPrime;
-    }
-
-    public RunnableThread(int threadID, int potentialPrime){
+    public RunnableThread(int threadID, int potentialPrime, AtomicBoolean ready){
         this.threadID = threadID;
         this.potentialPrime = potentialPrime;
+        this.ready = ready;
     }
     public void run() {
-        Thread.yield();
-        System.out.println("Hello from a thread!" + this.threadID);
-        if (this.potentialPrime % 2 == 0){
-            isPrime = false;
+        while (!ready.get()){
+            Thread.yield(); //only run when atomic boolean is true
         }
-        double sqroot = Math.sqrt(this.potentialPrime);
-        for(int i = 3; i < sqroot; i += 2){
+        System.out.println("Hello from a thread!" + this.threadID);
+        double half = this.potentialPrime / 2;
+        boolean flag = true;
+
+        for (int i = 2; i <= half; i++){
             if (this.potentialPrime % i == 0){
-                isPrime = false;
+                flag = false;
+                break;
             }
         }
-        isPrime = true;
+        if(flag == true){
+            System.out.println("The number is prime");
+        }
     }
 }
