@@ -3,6 +3,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Driver {
     public static void main(String args[]) {
         Thread myThreads[] = new Thread[300];
+        Prime primeObj = new Prime();
         AtomicBoolean ready = new AtomicBoolean(); //set atomic boolean to false
         int num = 654323;
 
@@ -14,6 +15,7 @@ public class Driver {
         for (int i = 0; i < 299; i++){
             try {
                 myThreads[i].join();
+                System.out.println("Prime Number?: " + primeObj.getIsPrime()); 
             } catch (InterruptedException ie) {} 
         }
     }
