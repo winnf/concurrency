@@ -1,8 +1,16 @@
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Driver {
 
     static AtomicBoolean ready = new AtomicBoolean(false);
+    static int winner = 0;
+
+    synchronized static void done(int id){
+        if (winner == 0) {
+            winner = id;
+        }
+    }
 
     public static void main(String args[]) {
         Thread myThreads[] = new Thread[300];
@@ -21,5 +29,6 @@ public class Driver {
                 myThreads[i].join();
             } catch (InterruptedException ie) {} 
         }
+        System.out.println("Thread #" + winner + " finished first! 654323 is a prime number");
     }
 }
