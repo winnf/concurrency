@@ -1,4 +1,3 @@
-import java.util.concurrent.Semaphore;
 
 public class SemaphoreThread implements Runnable {
     private int threadID;
@@ -12,11 +11,11 @@ public class SemaphoreThread implements Runnable {
     }
     public void run() {
         try {
-            sem.acquire(); //similar to wait()
+            sem.P(); //similar to wait() since there is already a java wait() method
             System.out.println("Started thread: " + this.threadID);
             Thread.sleep(500);
             System.out.println("Exiting thread: " + this.threadID);
-            sem.release(); //similar to signal()
+            sem.signal();
         }
         catch (InterruptedException e){
             e.printStackTrace();
