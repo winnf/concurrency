@@ -14,7 +14,6 @@ public class Driver {
 
     public static void main(String args[]) {
         Thread myThreads[] = new Thread[300];
-        Prime primeObj = new Prime();
         int num = 654323;
 
         for (int i = 0; i < 299; i++){
