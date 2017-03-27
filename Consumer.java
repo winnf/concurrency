@@ -15,9 +15,10 @@ public class Consumer implements Runnable {
      
     public void run(){
         for (int i=0; i < 10; i++){
+            //System.out.println("full value: " + this.full.value);
+            //System.out.println("mutex value: " + this.mutex.value);
             this.full.P();
             this.mutex.P();
-            System.out.println("Removing from Q..");
             q.removeFromQ();
             System.out.println("The consumer thread removed item: " + i);
             this.mutex.signal();

@@ -1,5 +1,5 @@
 public class Semaphore {
-    private int value; 
+    public int value;
     private int waiting; 
 
     public Semaphore(int v){
@@ -12,12 +12,18 @@ public class Semaphore {
             value --; 
         }
         else {
-            waiting++;
+            try {
+                waiting++;
+                wait();
+            }
+            catch (InterruptedException e) {}
         }
+
     }
 
     public synchronized void signal(){ //unlock
         if (waiting > 0){
+            notify();
             waiting--;
         }
         else {
