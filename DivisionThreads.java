@@ -5,16 +5,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class DivisionThread implements Runnable {
+public class DivisionThreads implements Runnable {
     private int threadID;
     private int targetNumber;
     private int start;
     private int end;
     private AtomicBoolean ready;
-    private Boolean isPrime = true;
-    private Lock lock = new Lock();
+    public static Boolean isPrime = true;
+    private ReentrantLock lock = new ReentrantLock();
 
-    public DivisionThread(int threadID, int targetNumber, int start, int end, AtomicBoolean ready){
+    public DivisionThreads(int threadID, int targetNumber, int start, int end, AtomicBoolean ready){
         this.threadID = threadID;
         this.targetNumber = targetNumber;
         this.start = start;
@@ -36,7 +36,7 @@ public class DivisionThread implements Runnable {
           }
         }
         lock.lock();
-        System.out.println("Thread "+ this.threadID + "is done");
+        System.out.println("Thread "+ this.threadID + " is done");
         lock.unlock();
     }
 }

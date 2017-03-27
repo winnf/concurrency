@@ -3,7 +3,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Driver {
+public class Exercise2 {
 
     static AtomicBoolean ready = new AtomicBoolean(false);
 
@@ -13,8 +13,8 @@ public class Driver {
         int start = 2;
         int end = start + (num-2)/10;
 
-        for (int i = 0; i < 9; i++){
-            myThreads[i] = new Thread(new DivisionThread(i, num, start, end, ready));
+        for (int i = 0; i < 10; i++){
+            myThreads[i] = new Thread(new DivisionThreads(i, num, start, end, ready));
             myThreads[i].start();
             start = end;
             end = start + (num-2)/10;
@@ -28,7 +28,7 @@ public class Driver {
             } catch (InterruptedException ie) {}
         }
 
-        if(DivisionThread.isPrime == true)
+        if(DivisionThreads.isPrime == true)
         {
           System.out.println(num + " is a prime number");
         }
