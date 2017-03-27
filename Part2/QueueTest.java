@@ -3,7 +3,6 @@ import java.util.*;
 import org.junit.*;
 
 public class QueueTest extends TestCase {
-   
     protected void setUp(){
         MyQueue queue = new MyQueue(5);
         MyQueue queue2 = new MyQueue(0);
