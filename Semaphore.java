@@ -7,7 +7,7 @@ public class Semaphore {
         waiting = 0; 
     }
 
-    public synchronized void P(){
+    public synchronized void P(){ //lock
         if (value > 0){
             value --; 
         }
@@ -16,7 +16,7 @@ public class Semaphore {
         }
     }
 
-    public synchronized void signal(){
+    public synchronized void signal(){ //unlock
         if (waiting > 0){
             waiting--;
         }
