@@ -63,7 +63,5 @@ public class QueueTest extends TestCase {
           assertTrue("Successfully imported lab_members", queue.enqueue(i));
       }
   }
-
-  //uses white box testing: statement coverage, branch coverage, condition coverage, path coverage
 }
 
